@@ -505,6 +505,7 @@ static void _lib_geotagging_gpx_callback(GtkWidget *widget, dt_lib_module_t *sel
   GtkTreeIter tree_iter;
   GtkListStore *model = gtk_list_store_new(2, G_TYPE_STRING /*display*/, G_TYPE_STRING /*name*/);
 
+  // TODO for !WIN32 define a pair of comboboxes for region/city
   GtkWidget *tz_selection = gtk_combo_box_new_with_model(GTK_TREE_MODEL(model));
   renderer = gtk_cell_renderer_text_new();
   gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(tz_selection), renderer, FALSE);
@@ -589,6 +590,8 @@ static int _sort_timezones(gconstpointer a, gconstpointer b)
 }
 
 // create a list of possible time zones
+// TODO: for zone.tab based systems it would return a list of regions, and for each region a list of cities
+// TODO: for WIN32 it would stay as it is.
 static GList *_lib_geotagging_get_timezones(void)
 {
   GList *timezones = NULL;
